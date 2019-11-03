@@ -26,7 +26,7 @@ namespace WordsA
 
                     if (decisionC == "nowe")
                     {
-                        decisionA=true;
+                        decisionA = true;
                         while (decisionA == true)
                         {
                             Console.WriteLine("Wpisz angielskie słowo");
@@ -90,9 +90,10 @@ namespace WordsA
                     }
                     if (decisionC == "test")
                     {
+                        int dobrzeA = 0;
                         Console.WriteLine("Podaj liczbę przykładów.");
-                        string examples=Console.ReadLine();
-                        int examplesInt=Convert.ToInt32(examples);
+                        string examples = Console.ReadLine();
+                        int examplesInt = Convert.ToInt32(examples);
                         for (int n = 1; n <= examplesInt; n++)
                         {
                             var testA = db.Slownik.ToList();
@@ -100,7 +101,7 @@ namespace WordsA
                             int testnum = rand.Next(testA.Count);
                             //int testnum=rand.Next(4);
                             Console.WriteLine(testnum);
-                            var singleTest=testA.ElementAt(testnum);
+                            var singleTest = testA.ElementAt(testnum);
                             //var singleTest = db.Slownik
                             //.Single(b => b.TabelaId == testnum);
                             Console.Write(singleTest.WordPol + "-");
@@ -110,6 +111,8 @@ namespace WordsA
                                 Colorgreen();
                                 Console.WriteLine("Brawo! Prawidłowa odpowiedź.");
                                 Colorgrey();
+                                dobrzeA++;
+
 
                             }
                             else
@@ -119,10 +122,20 @@ namespace WordsA
                                 Colorgrey();
                             }
 
+
                         }
+                        db.Efekty.Add(
+                                                            new Grade
+                                                            {
+                                                                Good_Answers = dobrzeA,
+                                                                NumberOf = examplesInt
+                                                            }
+                                                        );
+                        db.SaveChanges();
                     }
-                    if (decisionC=="end"){
-                        decisionStart=false;
+                    if (decisionC == "end")
+                    {
+                        decisionStart = false;
                     }
 
                 }
