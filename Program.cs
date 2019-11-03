@@ -11,6 +11,7 @@ namespace WordsA
             {
                 bool decisionA = true;
                 bool decisionStart = true;
+                var datadzis=DateTime.Now;
                 Console.WriteLine("Cześć Pokurcze! Jak tam? Zaczynamy?");
                 Console.ReadLine();
                 while (decisionStart == true)
@@ -125,12 +126,13 @@ namespace WordsA
 
                         }
                         db.Efekty.Add(
-                                                            new Grade
-                                                            {
-                                                                Good_Answers = dobrzeA,
-                                                                NumberOf = examplesInt
-                                                            }
-                                                        );
+                                new Grade
+                                {
+                                    Good_Answers = dobrzeA,
+                                    NumberOf = examplesInt,
+                                    Ocena=datadzis.ToString()
+                                }
+                                         );
                         db.SaveChanges();
                     }
                     if (decisionC == "end")
