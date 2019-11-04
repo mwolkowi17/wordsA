@@ -134,6 +134,21 @@ namespace WordsA
                                 }
                                          );
                         db.SaveChanges();
+                        Colorgreen();
+                        Console.WriteLine("===============================================================");
+                        Console.WriteLine($"Udało ci się rozwiązać {dobrzeA} przykładów na {examplesInt}.");
+                        Console.WriteLine("===============================================================");
+                        Colorgrey();
+                        string podsum = Console.ReadLine();
+                        if (podsum == "podsum"){
+                            var wyniki=db.Efekty.ToList();
+                            Console.WriteLine("===============================================================");
+                            Console.WriteLine($"|{"Data",-25}|{"Dobrze",10}|{"Ilość przykładów",10}|");
+                            foreach(var n in wyniki){
+                                Console.WriteLine($"|{n.Ocena,-25}|{n.Good_Answers,10}|{n.NumberOf,16}|");
+                            }
+                            Console.WriteLine("===============================================================");
+                        }
                     }
                     if (decisionC == "end")
                     {
